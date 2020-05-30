@@ -215,7 +215,6 @@ function findPath(startX, startY, endX, endY) {
   let path = [];
   moveToOpenList(startCell[0], startCell[1], openList, closedList);
   run(endCell[0], endCell[1], openList, closedList, path);
-  console.log(path);
   return path.reverse();
 }
 
@@ -223,7 +222,6 @@ Hooks.on("canvasReady", () => {
   canvas.grid.linkedList = [];
   const startTime = new Date().getTime();
   buildLinkedList();
-  console.log(canvas.grid.linkedList);
   const endTime = new Date().getTime();
   console.log(`Built Canvas Linked List, took ${endTime - startTime}ms`);
   canvas.grid.findPath = findPath;
