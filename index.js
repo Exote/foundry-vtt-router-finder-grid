@@ -173,7 +173,6 @@ function buildLinkedList() {
           x: centerPixel[0],
           y: centerPixel[1],
         });
-        console.log(neighborRay);
         if (!canvas.walls.checkCollision(neighborRay)) {
           const diagonalIndexes = [0, 2, 5, 7];
           if (diagonalIndexes.includes(index)) {
