@@ -1,0 +1,20 @@
+{
+  "name": "route-finder-grid",
+  "title": "Route-Finder Grid",
+  "description": "A module to find the shortest route for a token to reach a chosen point.",
+  "url": "",
+  "download": "",
+  "manifest": "",
+  "author": "Exote (Moe#6034)",
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    }
+  ],
+  "version": "0.1.0",
+  "scripts": ["./scripts/js/index.js"],
+  "minimumCoreVersion": "0.6.0",
+  "compatibleCoreVersion": "0.6.0"
+}
