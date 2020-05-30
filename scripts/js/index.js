@@ -140,13 +140,6 @@ function config() {
   });
 }
 
-function getRaysFromWaypoints(waypoints, destination) {
-  if (destination) waypoints = waypoints.concat([destination]);
-  return waypoints.slice(1).map((wp, i) => {
-    return new Ray(waypoints[i], wp);
-  });
-}
-
 function buildLinkedList() {
   for (let x = 0; x <= Math.round(canvas.grid.width / canvas.grid.w); x++) {
     canvas.grid.linkedList[x] = [];
@@ -175,13 +168,13 @@ function buildLinkedList() {
         [3] x [4]
         [5][6][7]
       */
-
-      const neighborRays = getRaysFromWaypoints(centerNeighbors, {
-        x: centerPixel[0],
-        y: centerPixel[1],
-      });
-      neighborRays.forEach((ray, index) => {
-        if (!canvas.walls.checkCollision(ray)) {
+      centerNeighbors.forEach((centerNeighbor, index) => {
+        const neighborRay = new Ray(centerNeighbor, {
+          x: centerPixel[0],
+          y: centerPixel[1],
+        });
+        console.log(neighborRay);
+        if (!canvas.walls.checkCollision(neighborRay)) {
           const diagonalIndexes = [0, 2, 5, 7];
           if (diagonalIndexes.includes(index)) {
             if (game.settings.get("route-finder", "allowDiagonals")) {
@@ -334,16 +327,18 @@ function findPath(startX, startY, endX, endY) {
   let path = [];
   moveToOpenList(startCell[0], startCell[1], openList, closedList);
   run(endCell[0], endCell[1], openList, closedList, path);
-  console.log(path.reverse());
+  console.log(path);
+  return path.reverse();
 }
 
 Hooks.on("canvasReady", () => {
   canvas.grid.linkedList = [];
   const startTime = new Date().getTime();
   buildLinkedList();
+  console.log(canvas.grid.linkedList);
   const endTime = new Date().getTime();
   console.log(`Built Canvas Linked List, took ${endTime - startTime}ms`);
-  canvas.grid.findPath = findPath
+  canvas.grid.findPath = findPath;
   canvas.grid.findPath(0, 0, 1000, 1050);
 });
 
