@@ -1,5 +1,3 @@
-function findPath() {}
-
 function config() {
   game.settings.register("route-finder", "allowDiagonals", {
     name: game.i18n.localize("route-finder.allowDiagonals.name"),
